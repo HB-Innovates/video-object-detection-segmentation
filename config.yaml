@@ -1,0 +1,31 @@
+model:
+  yolov5:
+    weights: "models/yolov5/weights/best.pt"
+    img_size: 640
+    conf_threshold: 0.25
+    iou_threshold: 0.45
+    device: "cuda"  # or "cpu"
+
+unet:
+  weights: "models/unet/weights/best.pth"
+  input_size: [256, 256]
+  num_classes: 2  # Adjust based on the dataset
+  device: "cuda"  # or "cpu"
+
+data:
+  raw_data_path: "data/raw/"
+  processed_data_path: "data/processed/"
+  annotations_path: "data/annotations/"
+
+training:
+  batch_size: 16
+  learning_rate: 0.001
+  num_epochs: 50
+  data_augmentation:
+    random_crop: true
+    color_jitter: true
+
+evaluation:
+  mAP_threshold: 0.5
+  save_results: true
+  results_path: "results/"
