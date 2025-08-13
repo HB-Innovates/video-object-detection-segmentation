@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Data
+/data/
+*.csv
+*.tsv
+*.h5
+*.mp4
+*.avi
+
+# Model weights
+*.pth
+*.pt
+/models/
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+venv/

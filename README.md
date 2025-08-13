@@ -1,7 +1,11 @@
 # Video Object Detection & Segmentation
 
+![MIT License](https://img.shields.io/badge/license-MIT-green)
+![Python](https://img.shields.io/badge/python-3.8%2B-blue)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+
 ## Overview
-This project implements real-time object detection and semantic segmentation on video streams using YOLOv5 and U-Net models. The goal is to accurately detect and segment objects in automotive video datasets.
+This project implements real-time object detection and semantic segmentation on video streams using YOLOv5 and U-Net models. The goal is to accurately detect and segment objects in automotive video datasets. It is designed for automotive applications, but can be adapted for other domains.
 
 ## Key Contributions
 - Implemented YOLOv5 for real-time object detection.
@@ -9,6 +13,19 @@ This project implements real-time object detection and semantic segmentation on 
 - Applied data augmentation techniques including random crops and color jitter.
 - Fine-tuned models using PyTorch.
 - Evaluated performance on a custom automotive video dataset, achieving over 85% mean Average Precision (mAP).
+
+## Dataset
+The dataset consists of automotive video streams with annotated bounding boxes and segmentation masks. Data should be placed in `data/raw` (videos) and `data/annotations` (labels). Example annotation formats: COCO for detection, PNG masks for segmentation.
+
+## Sample Results
+Below are sample outputs from the models:
+
+| Model   | Input Frame | Output (Detection) | Output (Segmentation) |
+|---------|-------------|--------------------|-----------------------|
+| YOLOv5  | ![input](docs/sample_input.jpg) | ![detection](docs/sample_detection.jpg) | - |
+| U-Net   | ![input](docs/sample_input.jpg) | - | ![segmentation](docs/sample_segmentation.jpg) |
+
+> *Add your own sample images in the `docs/` folder for better presentation.*
 
 ## Project Structure
 ```
@@ -34,24 +51,26 @@ video-object-detection-segmentation
 └── config.yaml             # Configuration settings for the project
 ```
 
-## Setup Instructions
-1. Clone the repository:
-   ```
-   git clone <repository-url>
-   cd video-object-detection-segmentation
-   ```
+## Quickstart
+```bash
+git clone <repository-url>
+cd video-object-detection-segmentation
+python -m venv venv
+venv\Scripts\activate  # On Windows
+pip install -r requirements.txt
+```
 
-2. Install the required dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-
-3. Prepare your data by placing raw videos in the `data/raw` directory and annotations in the `data/annotations` directory.
+Prepare your data by placing raw videos in the `data/raw` directory and annotations in the `data/annotations` directory.
 
 ## Usage Guidelines
 - Use the Jupyter notebooks in the `notebooks` directory for data preprocessing and model training.
 - The `src` directory contains the main code for detection, segmentation, and evaluation.
 - Modify the `config.yaml` file to adjust model parameters and training settings as needed.
+- For inference, use `src/detection.py` and `src/segmentation.py` scripts. Example:
+   ```bash
+   python src/detection.py --input data/raw/video.mp4 --output results/detections/
+   python src/segmentation.py --input data/raw/frame.jpg --output results/segmentation/
+   ```
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
