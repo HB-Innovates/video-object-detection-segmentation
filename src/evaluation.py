@@ -5,10 +5,15 @@ def calculate_iou(boxA, boxB):
     """
     Compute Intersection over Union (IoU) between two bounding boxes.
     Args:
-        boxA, boxB: [x1, y1, x2, y2]
+        boxA, boxB: [x1, y1, x2, y2] or [[x1, y1, x2, y2]]
     Returns:
         float: IoU value.
     """
+    # Unpack if input is [[x1, y1, x2, y2]]
+    if isinstance(boxA[0], (list, tuple, np.ndarray)):
+        boxA = boxA[0]
+    if isinstance(boxB[0], (list, tuple, np.ndarray)):
+        boxB = boxB[0]
     xA = max(boxA[0], boxB[0])
     yA = max(boxA[1], boxB[1])
     xB = min(boxA[2], boxB[2])
