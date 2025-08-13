@@ -21,4 +21,4 @@ jobs:
         pip install pytest
     - name: Run tests
       run: |
-        PYTHONPATH=src pytest
+        PYTHONPATH=$(pwd)/src pytest
