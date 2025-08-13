@@ -1,6 +1,11 @@
 import numpy as np
 import torch
-from src.evaluation import calculate_mAP, evaluate_model
+try:
+    from src.evaluation import calculate_mAP, evaluate_model
+except ImportError:
+    import sys, os
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+    from evaluation import calculate_mAP, evaluate_model
 
 def test_calculate_mAP():
     # Dummy predictions and ground truths

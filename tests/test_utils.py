@@ -1,5 +1,10 @@
 import numpy as np
-from src.utils import random_crop, color_jitter, load_image
+try:
+    from src.utils import random_crop, color_jitter, load_image
+except ImportError:
+    import sys, os
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+    from utils import random_crop, color_jitter, load_image
 
 def test_random_crop():
     img = np.ones((100, 100, 3), dtype=np.uint8)
